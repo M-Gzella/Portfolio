@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
         $_SESSION['form_errors'] = $errors;
 
     } else {
-        $secretKey = '6Lf-6AopAAAAALXamjqK50pYT_aH-FrKlAEzc5l7';
+        $secretKey = getenv('CAPTCHAKEY');
         $recaptchaToken = $_POST['recaptcha_token'];
 
         $verifyURL = "https://www.google.com/recaptcha/api/siteverify";
