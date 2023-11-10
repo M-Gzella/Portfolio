@@ -1,0 +1,26 @@
+{
+  "name": "todolist",
+  "short_name": "todolist",
+  "start_url": "todolist.php",
+  "display": "standalone",
+  "background_color": "#fdfdfd",
+  "theme_color": "#db4938",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "../../dist/img/icon_sm.png",
+      "type": "image/png", "sizes": "72x72"
+    },
+    {
+      "src": "../../dist/img/icon_big.png",
+      "type": "image/png", "sizes": "144x144",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "../../dist/img/icon_very_big.png",
+      "type": "image/png", "sizes": "512x512"
+    },
+    {
+    }
+  ]
+}

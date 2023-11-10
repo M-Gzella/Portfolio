@@ -1,0 +1,227 @@
+@import '_mixins.scss';
+
+section.skills {
+  .skills_container {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    gap: 25px;
+    padding: 0 25px 0 45px;
+    margin-top: 100px;
+    z-index: 1;
+
+    .skill_card {
+      width: 100%;
+      max-width: 360px;
+      border-radius: 50px;
+      padding: 25px 35px;
+      box-shadow: 0 0 5px 5px var(--main-theme);
+      position: relative;
+      transition: opacity .3s ease-in-out, transform .3s ease-in-out, visibility .3s ease-in-out;
+
+      &--top {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 40px;
+
+        .dots {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 15px;
+
+          .dot {
+            display: flex;
+            width: 20px;
+            height: 20px;
+            background-color: var(--main-theme);
+            border-radius: 100%;
+            transition: transform .3s ease-in-out;
+
+            &:nth-child(1) {
+              animation: dots 1s ease-in-out infinite;
+            }
+
+            &:nth-child(2) {
+              animation: dots 1s .25s ease-in-out infinite;
+            }
+
+            &:nth-child(3) {
+              animation: dots 1s .5s ease-in-out infinite;
+            }
+
+            @media (max-width: 640px) {
+              width: 18px;
+              height: 18px;
+            }
+          }
+        }
+
+        p {
+          @include text_program;
+          font-size: 24px;
+
+          @media (max-width: 640px) {
+            font-size: 22px;
+          }
+
+          @media (max-width: 480px) {
+            font-size: 20px;
+          }
+        }
+
+        @media (max-width: 640px) {
+          padding-bottom: 25px;
+        }
+
+        @media (max-width: 480px) {
+          position: relative;
+          z-index: -1;
+        }
+
+        @media (max-height: 736px) {
+          padding-bottom: 15px;
+        }
+      }
+
+      &--bottom {
+        max-height: 900px;
+        transform-origin: top;
+        transition: transform .5s ease-in-out, max-height .5s ease-in-out;
+
+        ul {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          gap: 15px;
+
+          li {
+            @include text_program;
+            list-style: none;
+            font-size: 20px;
+
+            @media (max-width: 640px) {
+              font-size: 16px;
+            }
+
+            @media (max-width: 360px) {
+              font-size: 15px;
+            }
+
+            @media (max-width: 320px) {
+              font-size: 12px;
+            }
+          }
+
+          @media (max-width: 992px) {
+            width: 100%;
+            display: grid;
+            grid-template-columns: auto auto auto;
+            justify-content: unset;
+            align-items: center;
+          }
+
+          @media (max-width: 480px) {
+            grid-template-columns: auto auto;
+          }
+
+          @media (max-height: 736px) {
+            gap: 10px
+          }
+
+          @media (max-height: 600px) {
+            gap: 5px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          transform: rotateX(90deg);
+          max-height: 0;
+        }
+      }
+
+      span.chevron {
+        display: none;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        bottom: 5px;
+        right: 15px;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        transition: transform .3s ease-in-out .3s;
+
+        @media (max-width: 480px) {
+          display: block;
+        }
+      }
+
+      &.hide {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 10;
+      }
+
+      &.active {
+        .skill_card--bottom {
+          transform: rotateX(0);
+          max-height: 300px;
+        }
+
+        span.chevron {
+          transform: rotate(180deg);
+        }
+      }
+
+      @media (max-width: 1200px) {
+        box-shadow: 0 0 5px 3px var(--main-theme);
+      }
+
+      @media (max-width: 992px) {
+        max-width: unset;
+      }
+
+      @media (max-width: 480px) {
+        padding: 25px 20px 30px 20px;
+        border-radius: 35px;
+        box-shadow: 0 0 5px 2px var(--main-theme);
+        cursor: pointer;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      margin-top: 30px;
+    }
+
+    @media (max-width: 992px) {
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    @media (max-width: 480px) {
+      gap: 60px;
+      padding: 0 15px 0 45px;
+      margin-top: 60px;
+    }
+  }
+
+  &::before, &::after {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -60px;
+  }
+}

@@ -1,0 +1,245 @@
+@import '../mixins';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --deep-dark: rgb(26, 26, 26);
+  --light-dark: rgb(79, 82, 92);
+  --light-blue: rgb(0, 132, 255);
+  --dark-blue: rgb(2, 84, 161);
+  --light: rgb(245, 245, 245);
+  --purple: #33174b;
+}
+
+
+body {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding-top: 120px;
+  font-family: 'Montserrat', sans-serif;
+  background: rgb(2,13,12);
+  background: radial-gradient(circle, rgba(2,13,12,1) 0%, rgba(32,196,173,1) 25%, rgba(32,196,173,1) 75%, rgba(2,13,12,1) 100%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.4);
+    z-index: -1;
+  }
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: var(--light);
+  text-transform: uppercase;
+}
+
+.todo {
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  margin: 0 10px;
+  padding-bottom: 20px;
+  text-align: center;
+  background: #fff;
+  box-shadow: 4px 4px 5px rgba(82,82,82,.4);
+  border-radius: 5px 5px 0 0;
+
+  .header {
+    padding: 40px;
+    border-radius: 5px 5px 0 0;
+    background: rgb(2,13,12);
+    background: radial-gradient(circle, rgba(2,13,12,1) 0%, rgba(138,32,196,1) 25%, rgba(138,32,196,1) 75%, rgba(2,13,12,1) 100%);
+
+    .todo-input {
+      width: 80%;
+      padding: 10px 20px;
+      margin-right: 20px;
+      border-radius: 5px;
+      border: none;
+      color: var(--light-dark);
+      background-color: var(--light);
+
+      @media (max-width: 640px) {
+        width: 100%;
+        margin-right: 0;
+      }
+    }
+
+    .add-btn {
+      padding: 10px 22px;
+      border: none;
+      border-radius: 5px;
+      color: var(--purple);
+      background-color: var(--light);
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: color .3s ease-in-out, background-color .3s ease-in-out;
+
+      &:hover {
+        color: #fff;
+        background-color: var(--purple);
+      }
+
+      @media (max-width: 640px) {
+        width: 100%;
+        max-width: 200px;
+        margin-top: 20px;
+      }
+    }
+
+    @media(max-width: 640px){
+      padding: 40px 20px;
+    }
+  }
+
+  .todo-list {
+    padding: 20px 0;
+
+    .alert-info {
+      margin-top: 20px;
+      color: var(--dark-blue);
+    }
+
+    h3 {
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 15px;
+      padding-left: 20px;
+      list-style: none;
+      background: rgb(2,13,12);
+      background: linear-gradient(270deg,#33174b,#8a20c4 25%,#8a20c4 75%,#33174b);
+      color: #fff;
+      border-radius: 8px;
+
+      &.completed {
+        font-size: 12px;
+        font-style: italic;
+        text-decoration: line-through;
+      }
+    }
+
+    .tools {
+      display: flex;
+
+      button {
+        padding: 15px 10px;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        transition: background-color .3s ease-in-out;
+
+        &:hover {
+          background-color: rgba(0,0,0,.5);
+        }
+
+        &.complete {
+          color: var(--light-blue);
+        }
+
+        &.edit {
+          font-weight: bold;
+          color: rgb(15,179,69);
+        }
+
+        &.delete {
+          color: tomato;
+          border-radius: 0 8px 8px 0;
+        }
+
+      }
+    }
+  }
+}
+
+.popup {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 800px;
+  color: var(--light);
+  background: rgb(2,13,12);
+  background: linear-gradient(270deg,#33174b,#8a20c4 25%,#8a20c4 75%,#33174b);
+  border-radius: 5px;
+
+  h3 {
+    padding: 20px;
+  }
+
+  .popup-info {
+    margin-bottom: 20px;
+    color: var(--light);
+  }
+
+  .popup-body {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 90%;
+    padding: 10px;
+
+    .popup-input {
+      width: 100%;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      color: var(--light-dark);
+      background-color: var(--light);
+
+      @media(max-width: 480px) {
+        margin-bottom: 20px;
+      }
+    }
+
+    .popup-btn {
+      display: inline-block;
+      width: 30%;
+      padding: 10px 22px;
+      margin: 20px;
+      border: none;
+      border-radius: 5px;
+      color: var(--deep-dark);
+      background-color: var(--light);
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-color .3s ease-in-out, color .3s ease-in-out;
+
+      &:hover {
+        color: #fff;
+        background-color: var(--purple);
+      }
+
+      @media(max-width: 480px) {
+        width: 100%;
+        margin: 5px 20px;
+      }
+    }
+  }
+}
+
+@include back_btn;
+.back_btn::before {
+  background-image: url('../../img/chevron_back.png');
+}

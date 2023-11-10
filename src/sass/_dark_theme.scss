@@ -1,0 +1,123 @@
+body.dark_theme {
+  .section {
+    &::before {
+      opacity: 0;
+    }
+
+    &::after {
+      opacity: .1;
+    }
+  }
+
+  .main_page {
+    background: rgb(41,39,42);
+    background: linear-gradient(100deg, rgba(41,39,42,1) 0%, rgba(119,64,105,1) 100%);
+
+    .bulb {
+      animation: bulb_on .4s ease-in-out forwards;
+      &::before {
+        animation: bulb_on .8s ease-in-out forwards;
+      }
+    }
+
+    .nav {
+      .hamburger_btn {
+        background-image: url('../img/more_dark.svg');
+      }
+
+      .theme_btn {
+        .theme_bg {
+          background-color: var(--accent-dark);
+          border: 1px solid var(--accent-light);
+
+          .theme_element {
+            background: url('../img/moon.svg') center;
+            transform: translateX(24px) rotate(90deg);
+          }
+        }
+      }
+
+      .socials {
+        .github {
+          background-image: url(../img/github_dark.svg);
+        }
+
+        .linkedin {
+          background-image: url(../img/linkedin_dark.svg);
+        }
+      }
+    }
+
+    .content {
+      &_left {
+        &--bottom::after {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  section.about_me {
+    .content_left {
+      &--info {
+        .name::before {
+          background-image: url(../img/user_dark.png);
+        }
+
+        .birth::before {
+          background-image: url(../img/calendar_dark.png);
+        }
+
+        .location::before {
+          background-image: url(../img/location_dark.png);
+        }
+
+        .education::before {
+          background-image: url(../img/teacher_dark.png);
+        }
+      }
+    }
+  }
+
+  section.skills {
+    .skills_container span.chevron {
+      background-image: url('../img/chevron_down_dark.svg');
+    }
+  }
+
+  section.contact {
+    span.error {
+      color: #ff4c4c;
+    }
+  }
+
+  section.my_work {
+    .prev_btn, .next_btn {
+      &::before {
+        background-image: url(../img/arrow_slider_dark.png);
+      }
+    }
+  }
+
+  section.my_projects {
+    .arrow_left .text_container::before {
+      background-image: url(../img/arrow_left_dark.png);
+    }
+
+    .arrow_right .text_container::before {
+      background-image: url(../img/arrow_right_dark.png);
+    }
+  }
+
+  section.own_projects {
+    .arrow_right_back {
+      background-image: url(../img/arrow_right_dark.png);
+    }
+  }
+
+  section.worked_with {
+    .arrow_left_back {
+      background-image: url(../img/arrow_left_dark.png);
+    }
+  }
+}

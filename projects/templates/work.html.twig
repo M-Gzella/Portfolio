@@ -1,0 +1,8 @@
+{% for work in projects %}
+    <div class="slide">
+        <img src="../../dist/img/{{ work.project_img }}" alt="{{ work.project_img_alt }}">
+        <a href="{{ work.project_location }}" target="_blank"></a>
+        <h3>{{ work.project_name }}</h3>
+        <p>{{ work.project_describe }}</p>
+    </div>
+{% endfor %}

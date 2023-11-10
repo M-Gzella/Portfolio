@@ -1,0 +1,110 @@
+body.light_theme {
+  .main_page {
+    background: rgb(240,255,251);
+    background: linear-gradient(100deg, rgba(240,255,251,1) 0%, rgba(111,220,191,1) 100%);
+
+    .bulb::before {
+      animation: bulb_off .6s ease-in-out forwards;
+    }
+
+    .nav {
+      .hamburger_btn {
+        background-image: url('../img/more_light.svg');
+      }
+
+      .theme_btn {
+        .theme_bg {
+          background-color: #A8EBFB;
+          border: 1px solid transparent;
+
+          .theme_element {
+            background: url('../img/sun.svg') center;
+            transform: translateX(0) rotate(-90deg);
+          }
+        }
+      }
+
+      .socials {
+        .github {
+          background-image: url(../img/github_light.svg);
+        }
+
+        .linkedin {
+          background-image: url(../img/linkedin_light.svg);
+        }
+      }
+    }
+
+    .content {
+      &_left {
+        &--bottom::after {
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  section.about_me {
+    .content_left {
+      &--info {
+        .name::before {
+          background-image: url(../img/user_light.png);
+        }
+
+        .birth::before {
+          background-image: url(../img/calendar_light.png);
+        }
+
+        .location::before {
+          background-image: url(../img/location_light.png);
+        }
+
+        .education::before {
+          background-image: url(../img/teacher_light.png);
+        }
+      }
+    }
+  }
+
+  section.skills {
+    .skills_container span.chevron {
+      background-image: url('../img/chevron_down_light.svg');
+    }
+  }
+
+  section.contact {
+    span.error {
+      color: #e10000;
+    }
+  }
+
+  section.my_work {
+    .prev_btn, .next_btn {
+      &::before {
+        background-image: url(../img/arrow_slider_light.png);
+      }
+    }
+  }
+
+  section.my_projects {
+    .arrow_left .text_container::before {
+      background-image: url(../img/arrow_left_light.png);
+    }
+
+    .arrow_right .text_container::before {
+      background-image: url(../img/arrow_right_light.png);
+    }
+  }
+
+  section.own_projects {
+    .arrow_right_back {
+      background-image: url(../img/arrow_right_light.png);
+    }
+  }
+
+  section.worked_with {
+    .arrow_left_back {
+      background-image: url(../img/arrow_left_light.png);
+    }
+  }
+}

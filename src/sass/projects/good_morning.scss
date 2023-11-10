@@ -1,0 +1,45 @@
+@import '../mixins';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2em;
+  height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #ed054f;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  min-height: 200px;
+  padding: 30px;
+  border-radius: 8px;
+  background-color: #fff;
+
+  h1 {
+    text-align: center;
+  }
+}
+
+.fun-fact {
+  margin-top: 20px;
+  text-align: center;
+}
+
+@include back_btn;
+.back_btn::before {
+  background-image: url('../../img/chevron_back.png');
+}

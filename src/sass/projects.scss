@@ -1,0 +1,116 @@
+@import "_variables.scss";
+@import "_mixins.scss";
+@import "_animations.scss";
+
+@import "_light_theme.scss";
+@import "_dark_theme.scss";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--accent-theme);
+}
+
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--main-theme);
+    border-radius: 15px;
+    cursor: pointer;
+  }
+}
+
+.section {
+  opacity: 0;
+  visibility: hidden;
+  transition: transform .8s ease-in-out, opacity .5s ease-in-out, visibility .5s ease-in-out;
+
+  h2 {
+    @include section_title;
+    text-align: center;
+  }
+
+  &.main_page {
+    transform: translateX(0);
+  }
+
+  &.own_projects {
+    transform: translateX(-1000px)
+  }
+
+  &.worked_with {
+    transform: translateX(1000px)
+  }
+
+  &.active {
+    transform: translateX(0);
+    visibility: visible;
+    opacity: 1;
+    z-index: 1;
+  }
+
+  &.right {
+    transform: translateX(2000px)
+  }
+
+  &.left {
+    transform: translateX(-2000px)
+  }
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 245px;
+    bottom: 0;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transition: opacity .3s ease-in-out;
+    opacity: 0.1;
+  }
+
+  &::before {
+    background-image: url(../img/cat_light.png);
+  }
+
+  &::after {
+    background-image: url(../img/cat_dark.png);
+    opacity: 0;
+  }
+
+  @media (max-height: 1200px) {
+    padding-top: 30px;
+  }
+
+  @media (max-height: 700px) {
+    padding-top: 0;
+  }
+}
+
+section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+@import 'projects_main';

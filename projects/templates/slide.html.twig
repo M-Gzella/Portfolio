@@ -1,0 +1,8 @@
+{% for slide in slider %}
+    <div class="slide">
+        <img src="../../dist/img/{{ slide.project_img }}" alt="{{ slide.project_img_alt }}">
+        <a href="{{ slide.project_location }}"></a>
+        <h3>{{ slide.project_name }}</h3>
+        <p>{{ slide.project_describe }}</p>
+    </div>
+{% endfor %}

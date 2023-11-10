@@ -1,0 +1,142 @@
+@import '_mixins.scss';
+
+section.contact {
+
+  p {
+    font-family: Montserrat, sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    text-align: center;
+    color: var(--text-theme);
+    margin: 10px 0 20px 0;
+    padding: 0 35px;
+
+    @media (max-width: 768px) {
+      font-size: 25px;
+      margin: 10px 0 20px 0;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 20px;
+    }
+
+    @media (max-height: 700px) {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+  }
+
+  form {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px 0 45px;
+    z-index: 1;
+
+    label, input, textarea {
+      width: 100%;
+      max-width: 800px;
+    }
+
+    label {
+      @include text_regular;
+      font-weight: 400;
+      padding: 10px 0 10px 20px;
+      font-size: 14px;
+    }
+
+    input, textarea {
+      height: 40px;
+      border-radius: 25px;
+      background-color: transparent;
+      border: 1px solid var(--main-theme);
+      box-shadow: 0 0 1px 1px var(--main-theme);
+      font-size: 16px;
+      color: var(--text-theme);
+      padding: 0 20px;
+
+      &:focus {
+       outline: 2px solid var(--main-theme);
+      }
+
+      @media (max-width: 320px) {
+        height: 35px;
+      }
+    }
+
+    textarea {
+      font-family: Montserrat, sans-serif;
+      height: 300px;
+      resize: none;
+      padding-top: 10px;
+      border-radius: 5px 5px 5px 5px;
+
+      &::-webkit-scrollbar {
+        width: 15px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: var(--main-theme);
+        border-radius: 25px;
+        cursor: pointer;
+      }
+
+      @media (max-height: 700px) {
+        height: 220px;
+      }
+
+      @media (max-width: 480px) {
+        height: 150px
+      }
+
+      @media (max-width: 320px) {
+        height: 100px
+      }
+    }
+
+    button {
+      width: 100%;
+      max-width: 150px;
+      margin: 20px 0 0 auto;
+      border: 1px solid var(--main-theme);
+      background: none;
+      border-radius: 25px;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-family: Montserrat, sans-serif;
+      font-weight: 600;
+      color: var(--main-theme);
+      cursor: pointer;
+      transition: color .3s ease-in-out, background-color .3s ease-in-out, border .3s ease-in-out;
+
+      &:hover {
+        border: 1px solid var(--accent-theme);
+        background-color: var(--main-theme);
+        color: var(--accent-theme);
+      }
+    }
+  }
+
+  span, .success {
+    text-align: center;
+    width: 100%;
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  span.success {
+    color: var(--text-theme);
+    font-size: 14px;
+    margin-top: 15px;
+  }
+
+  span.error {
+    font-size: 12px;
+    line-height: 0;
+  }
+}

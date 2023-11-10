@@ -1,0 +1,247 @@
+@import '../mixins';
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --first-color: #ab0eb6;
+  --second-color: #fa1406;
+  --third-color: #d2c7be;
+  --hover-color: #8d0f96;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #222;
+}
+
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  width: 20%;
+  color: #fff;
+  font-size: 22px;
+  background-color: transparent;
+  border: 1px solid var(--first-color);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color .3s ease-in-out;
+
+  &:hover, &:focus {
+    background-color: var(--first-color);
+    outline: none;
+  }
+}
+
+.wrapper {
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 50px;
+  width: 100%;
+  max-width: 800px;
+  background: rgb(46,46,46);
+  background: linear-gradient(270deg, rgba(46,46,46,1) 0%, rgba(0,0,0,1) 50%, rgba(49,48,50,1) 100%);
+  border-radius: 8px;
+  box-shadow: 5px 5px 10px #000;
+  color: #fff;
+
+  .info, .more-colors {
+    position: absolute;
+    top: 6px;
+    padding: 20px;
+    font-size: 24px;
+    color: var(--third-color);
+    cursor: pointer;
+    transition: color .3s ease-in-out;
+
+    &:hover {
+      color: var(--first-color);
+    }
+  }
+
+  .info {
+    right: 14px;
+  }
+
+  .more-colors {
+    right: 68px;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+    font-size: 60px;
+    font-weight: lighter;
+  }
+
+  .stopwatch {
+    font-size: 72px;
+    color: var(--first-color);
+  }
+
+  .time {
+    visibility: hidden;
+    color: var(--third-color);
+    font-size: 22px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 30px;
+
+    .history {
+      flex-grow: 1;
+      text-transform: uppercase;
+    }
+
+    @media(max-width: 600px) {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .time-list {
+    display: none;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      width: 300px;
+      font-size: 22px;
+      color: var(--third-color);
+    }
+
+    span {
+      font-weight: bold;
+    }
+
+    &.show {
+      display: block;
+    }
+  }
+
+  .pallete {
+    position: absolute;
+    right: 25px;
+    top: 125px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transform: translateX(150px);
+    transition: transform .3s ease-in-out;
+
+    p {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      transition: transform .3s ease-in-out;
+      cursor: pointer;
+
+      &.first-color {
+        background-color: #ab0eb6;
+        box-shadow: 0 0 10px 1px #ab0eb6;
+      }
+
+      &.second-color {
+        background-color: #10ad81;
+        box-shadow: 0 0 10px 1px #10ad81;
+      }
+
+      &.third-color {
+        background-color: #bb9f88;
+        box-shadow: 0 0 10px 1px #bb9f88;
+      }
+
+      &:hover {
+        transform: translateX(-5px);
+      }
+    }
+
+    &.show-pallete {
+      transform: translateX(0);
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 50px 10px;
+  }
+}
+
+.modal-shadow {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.65);
+
+  .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 360px;
+    padding: 20px 60px;
+    border-radius: 15px;
+    background-color: rgb(245,245,245);
+
+    h3 {
+      margin-bottom: 20px;
+      font-size: 30px;
+    }
+
+    p {
+      margin-bottom: 10px;
+      margin-left: 20px;
+      font-size: 20px;
+    }
+
+    .close {
+      display: block;
+      margin: 40px auto 0;
+      width: 200px;
+      background-color: var(--first-color);
+      transition: background-color .3s;
+
+      &:hover {
+        background-color: var(--hover-color);
+      }
+    }
+
+    i, strong {
+      color: var(--first-color);
+    }
+  }
+}
+
+.modal-animation {
+  animation: show-modal .5s ease-in-out;
+}
+
+@keyframes show-modal {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@include back_btn;
+
+.back_btn::before {
+  background-image: url('../../img/chevron_back.png');
+}
