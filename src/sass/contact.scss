@@ -41,6 +41,10 @@ section.contact {
     label, input, textarea {
       width: 100%;
       max-width: 800px;
+
+      @media (min-width: 2560px) {
+        max-width: 1200px;
+      }
     }
 
     label {
@@ -62,6 +66,10 @@ section.contact {
 
       &:focus {
        outline: 2px solid var(--main-theme);
+      }
+
+      @media (min-width: 2560px) {
+        height: 60px;
       }
 
       @media (max-width: 320px) {
@@ -86,8 +94,12 @@ section.contact {
         cursor: pointer;
       }
 
-      @media (max-height: 700px) {
-        height: 220px;
+      @media (max-width: 1280px) {
+        height: 200px;
+      }
+
+      @media (max-height: 768px) {
+        height: 200px;
       }
 
       @media (max-width: 480px) {
@@ -104,7 +116,7 @@ section.contact {
       max-width: 150px;
       margin: 20px 0 0 auto;
       border: 1px solid var(--main-theme);
-      background: none;
+      background-color: var(--accent-theme);
       border-radius: 25px;
       padding: 10px 20px;
       font-size: 16px;
@@ -119,6 +131,17 @@ section.contact {
         background-color: var(--main-theme);
         color: var(--accent-theme);
       }
+
+      @media (min-width: 2560px) {
+        max-width: 250px;
+        margin: 40px 0 0 auto;
+        padding: 15px 20px;
+        font-size: 25px;
+      }
+    }
+
+    @media (min-width: 2560px) {
+      max-width: 1200px;
     }
   }
 

@@ -19,10 +19,16 @@ let skill_cards;
 let sections;
 let dots;
 
+let stars;
+let areThereStars = false;
+
 let startX = null;
 let startY = 0;
 
-const mediaQuery = window.matchMedia('(max-width: 480px)');
+const phoneQuery = window.matchMedia('(max-width: 480px)');
+const tabletQuery = window.matchMedia('(max-width: 768px)');
+const desktopQuery = window.matchMedia('(min-width: 768px)');
+
 
 let root;
 
@@ -59,13 +65,17 @@ const prepareDOMEvents = () => {
     close_menu_btn.addEventListener('click', menuHandler);
     menu_options_mobile.forEach(el => el.addEventListener('click', menuHandler));
 
-    window.addEventListener('wheel', throttledWheel);
+    if (desktopQuery.matches) {
+        window.addEventListener('wheel', throttledWheel);
+    }
 
-    wrapper.addEventListener('touchstart', (event) => {
-        const touch = event.touches[0];
-        startY = touch.clientY;
-    })
-    wrapper.addEventListener('touchmove', throttledTouch);
+    if (tabletQuery.matches) {
+        wrapper.addEventListener('touchstart', (event) => {
+            const touch = event.touches[0];
+            startY = touch.clientY;
+        })
+        wrapper.addEventListener('touchmove', throttledTouch);
+    }
 
     dots.forEach(dot => dot.addEventListener('click', dotActiveHandler));
     menu_items.forEach(item => item.addEventListener('click', menuItemActiveHandler))
@@ -83,14 +93,14 @@ const prepareDOMEvents = () => {
         startX = null;
     })
 
-    if (mediaQuery.matches) {
+    if (phoneQuery.matches) {
         skill_cards.forEach(card => card.addEventListener('click', throttledSkillCard));
     }
 }
 
-// Funkcja zmienia theme strony za pomocą klasy light_theme oraz dark_theme, które
-// dodaje do body. Zmienia też kolory w root oraz dodaje aktualny theme do
-// localstorage
+// The function changes the theme of the page using the classes light_theme and dark_theme, which
+// are added to the body. It also changes the colors in root and adds the current theme to
+// local storage.
 const changeTheme = () => {
     if (body.classList.value === 'light_theme') {
         let theme = JSON.parse(localStorage.getItem('theme'));
@@ -131,11 +141,11 @@ const menuHandler = () => {
     menu_mobile.classList.toggle('show');
 }
 
-//Funckja odpala się po kliknięciu w dota i pobiera data atrybut.
-//Następnie przechodzi po każdym dotcie i usuwa mu klasę active i
-//sprawdza który dot w foreachu równa się temu w który kliknięto i
-//dodaje mu klasę active, taka sama logika jest przy dodawaniu klasy active
-//do sekcji.
+// The function triggers upon clicking a dot and retrieves the data attribute.
+// Then, it iterates through each dot, removes its active class, and
+// checks which dot in the forEach loop is equal to the one clicked,
+// adding the active class to it. The same logic applies when adding the active class
+// to the section.
 const dotActiveHandler = (event) => {
     const dotId = event.target.getAttribute('href').slice(1)
     sections.forEach(section => {
@@ -173,10 +183,12 @@ const menuItemActiveHandler = (event) => {
 }
 
 
-//Funkcja wywołana użyciem scrolla, foreach przechodzi po wszystkich sekcjach i sprawdza czy dana sekcja
-//jest widoczna na stronie, jezeli tak to dodaje do currentkey indeks sekcji z tablicy.
-//Następnie funckja checkScrollUp sprawdza czy został użyty scroll w góre czy w dół i odpowiednio
-//zmienia currentkey w góre lub w dół, aby uzyskać sekcje, która ma się pokazać.
+// The function triggered by scrolling, iterates through all sections using a forEach loop
+// and checks if a particular section is visible on the page. If so, it adds the index of the section
+// to the currentkey variable.
+// Then, the checkScrollUp function examines whether a scroll up or down has been performed, and accordingly
+// adjusts the currentkey upward or downward to determine the section to be displayed.
+
 const getCurrentSectionDesktop = (event) => {
     let currentKey, nextKey;
     let sectionsCount = sections.length;
@@ -201,9 +213,9 @@ const getCurrentSectionDesktop = (event) => {
     }
 }
 
-//Funkcja działa na tej samej zasadzie co wyżej z tym że sprawdzane jest dotknięcie urządzenia,
-//a nie scroll. Przesunięcie palcem w góre lub w dół musi być większe/mniejsze niż 20px (aby
-//slider działał poprawnie)
+// The function operates on the same principle as above, with the difference that it checks for touch events
+// instead of scrolling. The finger swipe up or down must be greater/less than 100px (for
+//the slider to function correctly).
 function getCurrentSectionMobile(event) {
     const touch = event.touches[0];
     const deltaY = touch.clientY - startY;
@@ -219,9 +231,9 @@ function getCurrentSectionMobile(event) {
         }
     });
 
-    if (deltaY > 20) {
+    if (deltaY > 100) {
         nextKey = (currentKey === 0) ? 0 : currentKey - 1;
-    } else if (deltaY < -20) {
+    } else if (deltaY < - 100) {
         nextKey = (currentKey === sectionsCount - 1) ? sectionsCount - 1 : currentKey + 1;
     }
 
@@ -254,8 +266,8 @@ const dotScrollActiveHandler = (data) => {
     })
 }
 
-//Funckja pobiera informacje o następnej sekcji, a następnie przesuwa się odpowiednio na
-//jej wysokość i dodaje do URL id sekcji.
+// The function retrieves information about the next section, then scrolls accordingly
+// to its height and adds the section's ID to the URL.
 const handleActiveSectionDesktop = (event) => {
     const data = getCurrentSectionDesktop(event);
     const nextSection = data.next;
@@ -299,8 +311,9 @@ const hoverOut = (event) => {
 }
 
 
-//Funckje do przesuwania slidera, pobierają aktualną szerokość slajdu,
-//a następnie odpowiednio przesuwają slider w prawo/lewo o szerokość slajdu.
+// Functions for sliding the slider, retrieve the current width of the slide,
+// and then appropriately slide the slider to the right/left by the width of the slide.
+
 const nextSlide = () => {
     const slideWidth = sliders[currentSlide].offsetWidth
     if (currentSlide < sliders.length - 1) {
@@ -336,11 +349,12 @@ const checkDeltaX = (event) => {
     }
 }
 
-//Funckja do aktywowania karty z umiejętnościami w wersji mobilnej.
-//Pobiera dane karty i sprawdza czy posiada klasę active, jeżeli tak
-//to karta wraca na miejsce i usuwane są klasy z karty.
-//Jeżeli nie ma to dodaje active to klikniętej karty, a reszta otrzymuje klasę
-//hide, a następnie funkcja skillCardMoveHandle przesuwa odpowiednio kartę.
+// Function for activating the skills card in the mobile version.
+// It retrieves data from the card and checks if it has the active class; if so,
+// the card returns to its original position, and classes are removed from the card.
+// If it doesn't have the active class, it adds the active class to the clicked card,
+// and the rest receive the hide class. Then, the skillCardMoveHandle function appropriately moves the card.
+
 const skillCardHandler = (event) => {
     const cardID = event.target.getAttribute('data-id');
     const thisCard = event.target;
@@ -387,7 +401,7 @@ const skillCardMoveHandle = ($id, $card) => {
     }
 }
 
-//Funkcja do ograniczania wykonywania się funkcji
+// Function for limiting the execution of a function.
 function throttle(func, delay) {
     let lastCall = 0;
     return function () {
@@ -397,6 +411,31 @@ function throttle(func, delay) {
             lastCall = now;
         }
     }
+}
+
+const createStars = () => {
+    let windowWidth = window.innerWidth;
+    let windowHeight = window.innerHeight;
+
+    if (phoneQuery.matches) {
+        stars = 40;
+    } else {
+        stars = 80;
+    }
+
+    if (areThereStars === false) {
+        for (let i = 0; i<stars; i++) {
+            const newStar = document.createElement('span');
+            let randomX = Math.floor(Math.random() * windowWidth);
+            let randomY = Math.floor(Math.random() * windowHeight);
+
+            newStar.classList.add('star');
+            wrapper.append(newStar);
+
+            newStar.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+    }
+    areThereStars = true;
 }
 
 const throttledWheel = throttle(handleActiveSectionDesktop, 500);
@@ -437,7 +476,17 @@ window.addEventListener('load', (event) => {
         const urlId = splitId[1];
         checkActiveMenuItems(urlId);
     }
+    body.style.overflow = 'hidden';
+    createStars();
 })
+
+window.addEventListener('popstate', (event) => {
+    if (window.location.href.includes("#")) {
+        const splitId = window.location.href.split('#');
+        const urlId = splitId[1];
+        checkActiveMenuItems(urlId);
+    }
+});
 window.addEventListener('DOMContentLoaded', ()=>{
     if(localStorage.getItem('theme')){
         let theme = localStorage.getItem('theme');

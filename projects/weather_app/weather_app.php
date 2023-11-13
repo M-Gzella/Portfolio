@@ -24,7 +24,7 @@
         <div class="main-info">
             <div>
                 <h3 class="city-name"></h3>
-                <input type="text" placeholder="Wpisz nazwę miasta..."><button>Wyślij</button>
+                <input type="text" placeholder="Wpisz nazwę miasta..."><button class="send_btn">Wyślij</button>
                 <p class="warning"></p>
             </div>
             <img src="../../dist/img/unknown.png" alt="Obrazek przedstawiający pogodę" class="photo">

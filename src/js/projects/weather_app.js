@@ -1,5 +1,5 @@
 const input = document.querySelector('input');
-const button = document.querySelector('button');
+const button = document.querySelector('button.send_btn');
 const cityName = document.querySelector('.city-name');
 const warning = document.querySelector('.warning');
 const photo = document.querySelector('.photo');
@@ -9,7 +9,7 @@ const humidity = document.querySelector('.humidity');
 
 
 const API_LINK = 'https://api.openweathermap.org/data/2.5/weather?q=';
-const API_KEY = '&appid=fe527291c93984725c030bad261b983f';
+const API_KEY = 'API_KEY';
 const API_UNITS = '&units=metric';
 
 

@@ -67,11 +67,27 @@ body {
   }
 
   &.right {
-    transform: translateX(2000px)
+    transform: translateX(2000px);
+
+    @media (max-width: 640px) {
+      transform: translateX(1000px);
+    }
+
+    @media (max-width: 480px) {
+      transform: translateX(500px);
+    }
   }
 
   &.left {
-    transform: translateX(-2000px)
+    transform: translateX(-2000px);
+
+    @media (max-width: 640px) {
+      transform: translateX(-1000px);
+    }
+
+    @media (max-width: 480px) {
+      transform: translateX(-500px);
+    }
   }
 
   &::before, &::after {

@@ -43,14 +43,21 @@ session_start();
     <meta property="og:url" content="https://michalgzella.pl" />
     <meta property="og:title" content="Michał Gzella | Portfolio" />
     <meta property="og:description" content="Eksperymentuje z kodem, a czasami nawet on eksperymentuje ze mną" />
-    <meta property="og:image" content="dist/img/meta_image.png" />
+    <meta property="og:image" content="./dist/img/meta_image.png" />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://michalgzella.pl" />
     <meta property="twitter:title" content="Michał Gzella | Portfolio" />
     <meta property="twitter:description" content="Eksperymentuje z kodem, a czasami nawet on eksperymentuje ze mną" />
-    <meta property="twitter:image" content="dist/img/meta_image.png" />
+    <meta property="twitter:image" content="./dist/img/meta_image.png" />
 
+    <link rel="apple-touch-icon" sizes="180x180" href="./dist/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./dist/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./dist/img/favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+    <link rel="mask-icon" href="./dist/img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Epilogue&family=Montserrat:wght@400;600;900&family=Orbitron:wght@700&display=swap" rel="stylesheet">
@@ -211,17 +218,20 @@ session_start();
 
         <section id="my_works" class="section my_work active">
             <h2>Moje prace</h2>
-            <div class="slider_container">
-                <div class="slider">
-                    <?php
-                        echo generate_slide_projects(get_sliders_elements($pdo), $twig);
-                    ?>
+            <div class="content">
+                <div class="slider_container">
+                    <div class="prev_btn"></div>
+                    <div class="next_btn"></div>
+                    <div class="slider">
+                        <?php
+                            echo generate_slide_projects(get_sliders_elements($pdo), $twig);
+                        ?>
+                    </div>
                 </div>
+                <a href="projects/my_projects.php" class="check_btn">Sprawdź resztę</a>
             </div>
-            <div class="prev_btn"></div>
-            <div class="next_btn"></div>
-            <a href="projects/my_projects.php" class="check_btn">Sprawdź resztę</a>
         </section>
+
         <section id="contact" class="section contact active">
             <h2>Kontakt</h2>
             <p>Masz pytania? Napisz do mnie!</p>

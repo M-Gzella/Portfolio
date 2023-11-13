@@ -103,6 +103,10 @@
       }
     }
 
+    @media (min-width: 2560px) {
+      max-width: 1200px;
+    }
+
     @media (max-width: 640px) {
       display: none;
     }
@@ -140,6 +144,7 @@
     }
 
     .theme_btn {
+      position: relative;
       display: flex;
       min-width: 50px;
       height: 25px;
@@ -157,6 +162,34 @@
           background-size: contain;
           transition: transform .3s ease-in-out;
         }
+      }
+
+      &::after, &::before {
+        content: '';
+        position: absolute;
+        width: 80px;
+        height: 60px;
+        top: -60px;
+        right: -60px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        transition: opacity .3s ease-in-out;
+
+        @media (max-width: 640px) {
+          width: 60px;
+          height: 30px;
+          top: -40px;
+          right: -30px;
+        }
+      }
+
+      &::after {
+        background-image: url('../img/theme_arrow_dark.svg');
+      }
+
+      &::before {
+        background-image: url('../img/theme_arrow_light.svg');
       }
     }
 

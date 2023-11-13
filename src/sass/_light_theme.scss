@@ -1,4 +1,10 @@
 body.light_theme {
+  .wrapper {
+    .star {
+      display: none;
+    }
+  }
+
   .main_page {
     background: rgb(240,255,251);
     background: linear-gradient(100deg, rgba(240,255,251,1) 0%, rgba(111,220,191,1) 100%);
@@ -21,6 +27,14 @@ body.light_theme {
             background: url('../img/sun.svg') center;
             transform: translateX(0) rotate(-90deg);
           }
+        }
+
+        &::before {
+          opacity: 1;
+        }
+
+        &::after {
+          opacity: 0;
         }
       }
 

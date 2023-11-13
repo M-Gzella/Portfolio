@@ -4,6 +4,10 @@
   font-weight: 400;
   color: var(--text-theme);
 
+  @media (min-width: 2560px) {
+    font-size: 150px;
+  }
+
   @media (max-width: 1440px) {
     font-size: 80px;
   }
@@ -26,6 +30,10 @@
   font-size: 16px;
   font-weight: 600;
   color: var(--text-theme);
+
+  @media (min-width: 2560px) {
+    font-size: 25px;
+  }
 }
 
 @mixin text_program {
@@ -138,6 +146,11 @@
       &::before {
         background-color: rgba(0,0,0,.5);
       }
+    }
+
+    @media (min-width: 2560px) {
+      width: 550px;
+      height: 550px;
     }
 
     @media (max-width: 480px) {

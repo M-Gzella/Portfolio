@@ -16,8 +16,15 @@ html {
 }
 
 body {
-  overflow: hidden;
   background-color: var(--accent-theme);
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
 }
 
 .section {
@@ -68,6 +75,20 @@ body {
     opacity: 0;
   }
 }
+.wrapper{
+  position: relative;
+
+  .star {
+    position: fixed;
+    top: 0;
+    width: 5px;
+    height: 5px;
+    background-image: url(../img/star.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
 
 .global_nav {
   position: fixed;
@@ -99,6 +120,15 @@ body {
       &:hover {
         transform: translateX(2px);
       }
+
+      @media (min-width: 2560px) {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    @media (min-width: 2560px) {
+      gap: 10px;
     }
   }
 }

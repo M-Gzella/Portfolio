@@ -35,6 +35,14 @@ body.dark_theme {
             transform: translateX(24px) rotate(90deg);
           }
         }
+
+        &::before {
+          opacity: 0;
+        }
+
+        &::after {
+          opacity: 1;
+        }
       }
 
       .socials {

@@ -14,6 +14,7 @@ section.skills {
     .skill_card {
       width: 100%;
       max-width: 360px;
+      background-color: var(--accent-theme);
       border-radius: 50px;
       padding: 25px 35px;
       box-shadow: 0 0 5px 5px var(--main-theme);
@@ -64,6 +65,10 @@ section.skills {
           @include text_program;
           font-size: 24px;
 
+          @media (min-width: 2560px) {
+            font-size: 40px;
+          }
+
           @media (max-width: 640px) {
             font-size: 22px;
           }
@@ -75,11 +80,6 @@ section.skills {
 
         @media (max-width: 640px) {
           padding-bottom: 25px;
-        }
-
-        @media (max-width: 480px) {
-          position: relative;
-          z-index: -1;
         }
 
         @media (max-height: 736px) {
@@ -103,6 +103,10 @@ section.skills {
             @include text_program;
             list-style: none;
             font-size: 20px;
+
+            @media (min-width: 2560px) {
+              font-size: 30px;
+            }
 
             @media (max-width: 640px) {
               font-size: 16px;
@@ -187,6 +191,10 @@ section.skills {
         }
       }
 
+      @media (min-width: 2560px) {
+        max-width: 500px;
+      }
+
       @media (max-width: 1200px) {
         box-shadow: 0 0 5px 3px var(--main-theme);
       }
@@ -201,6 +209,10 @@ section.skills {
         box-shadow: 0 0 5px 2px var(--main-theme);
         cursor: pointer;
       }
+    }
+
+    @media (min-width: 2560px) {
+      margin-top: 200px;
     }
 
     @media (max-width: 1200px) {
